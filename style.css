@@ -13,6 +13,7 @@ body {
     background-size: cover;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -89,4 +90,7 @@ p{
 
 .submit-button:hover{
     background-color: #bdb03cc5;
+}
+canvas{
+    z-index: 1;
 }

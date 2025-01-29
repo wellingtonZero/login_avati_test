@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Oxanium:wght@200..800&display=swap"
         rel="stylesheet">
+    <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
 </head>
 
 <body>
     <nav>
         <div class="logo">
-            <canvas id="rivecanvas" >
-
-            </canvas>
+            <a href="https://avati.com.br"><canvas id="rivecanvas" width="250" height="118"></canvas></a>
+            
         </div>
     </nav>
     <div class="container">
@@ -38,6 +38,28 @@
             </div>
         </form>
     </div>
+    <script>
+        const canvas = document.getElementById("rivecanvas");
+        const riveInstance = new rive.Rive({
+            src: "assets/logoavati.riv",
+            stateMachines: "anime", // Certifique-se de que esse nome está correto no Rive
+            canvas: canvas,
+            autoplay: true,
+            onLoad: () => {
+                const inputs = riveInstance.stateMachineInputs("anime"); // Obtém os inputs da animação
+                if (inputs) {
+                    const hoverInput = inputs.find(input => input.name === "hover"); // Substitua "hover" pelo nome correto do input booleano
+                    if (hoverInput) {
+                        canvas.addEventListener("mouse_enter", () => hoverInput.value = true);
+                        canvas.addEventListener("mouse_exit", () => hoverInput.value = false);
+                    } else {
+                        console.error("Input booleano 'hover' não encontrado na State Machine.");
+                    }
+                }
+            }
+        });
+
+    </script>
 </body>
 
 </html>
