@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela Login Avati</title>
+    <link rel="preload" href="assets/semicircles.jpg" as="image">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,45 +22,31 @@
         </div>
     </nav>
     <div class="container">
-        <form action="">
+        <form id="login-form">
             <h1>Entrar na Plataforma</h1>
+        
             <div class="input-container">
-                <input placeholder="Email" type="text" required>
+                <input id="email" placeholder="Email" type="text" required>
                 <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/user.png" alt="user" />
             </div>
+            <div id="email-error" class="error-message"></div> <!-- Container do erro do email -->
+        
             <div class="input-container">
-                <input placeholder="Password" type="password" required>
+                <input id="password" placeholder="Password" type="password" required>
                 <img width="20" height="20" src="https://img.icons8.com/ios/50/lock--v1.png" alt="lock--v1" />
-                <a href="#">Esqueci minha senha</a>
             </div>
+            <div id="password-error" class="error-message"></div> <!-- Container do erro da senha -->
+        
             <button class="submit-button" type="submit">Entrar</button>
+        
             <div class="input-container">
-                <p>Não está cadastrado ? <a href="#">Cadastrar</a></p>
+                <p>Não está cadastrado? <a href="#">Cadastrar</a></p>
             </div>
         </form>
+        
     </div>
-    <script>
-        const canvas = document.getElementById("rivecanvas");
-        const riveInstance = new rive.Rive({
-            src: "assets/logoavati.riv",
-            stateMachines: "anime", // Certifique-se de que esse nome está correto no Rive
-            canvas: canvas,
-            autoplay: true,
-            onLoad: () => {
-                const inputs = riveInstance.stateMachineInputs("anime"); // Obtém os inputs da animação
-                if (inputs) {
-                    const hoverInput = inputs.find(input => input.name === "hover"); // Substitua "hover" pelo nome correto do input booleano
-                    if (hoverInput) {
-                        canvas.addEventListener("mouse_enter", () => hoverInput.value = true);
-                        canvas.addEventListener("mouse_exit", () => hoverInput.value = false);
-                    } else {
-                        console.error("Input booleano 'hover' não encontrado na State Machine.");
-                    }
-                }
-            }
-        });
-
-    </script>
+    <script src="js/logo_rive.js"></script>
+    <script src="js/autenticacao.js"></script>
 </body>
 
 </html>
